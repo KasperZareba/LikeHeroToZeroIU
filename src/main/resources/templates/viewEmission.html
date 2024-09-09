@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Emissions</title>
+</head>
+<body>
+<h1>Emission List</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>countryCode</th>
+        <th>averageEmissionValue</th>
+        <th>localDate</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="emission : ${emissions}">
+        <td th:text="${emission.id}">ID</td>
+        <td th:text="${emission.countryCode}">countryCode</td>
+        <td th:text="${emission.averageEmissionValue}">averageEmissionValue</td>
+        <td th:text="${emission.localDate}">localDate</td>
+
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

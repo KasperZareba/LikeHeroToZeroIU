@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Startseite</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            text-align: right;
+        }
+        header span {
+            background-color: #2196F3;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+        nav {
+            display: flex;
+            justify-content: flex-end;
+            background-color: #333;
+            padding: 10px 0;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            margin: 0 10px;
+        }
+        nav a:hover {
+            background-color: #4CAF50;
+        }
+        main {
+            padding: 20px;
+            margin-bottom: 60px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        h1, h4 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-collapse: collapse;
+        }
+        table th, table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            padding: 0.5em 1em;
+            margin-left: 2px;
+        }
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background: #4CAF50;
+            color: white;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            width: 100%;
+        }
+        .news-container {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+        .news-container h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .news-container p {
+            color: #666;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            $('#emissionsTable').DataTable({
+                "paging": true,
+                "searching": false,
+                "info": false,
+                "autoWidth": false,
+                "columnDefs": [
+                    { "width": "50%", "targets": 0 },
+                    { "width": "50%", "targets": 1 }
+                ]
+            });
+        });
+    </script>
+</head>
+<body>
+<header>
+</header>
+<nav>
+    <a th:href="@{/index}">Home</a>
+    <a th:href="@{#emissionsTable}">CO2-Table</a>
+    <a th:href="@{#about}">Bei uns</a>
+    <a th:href="@{/login}">Einloggen</a>
+</nav>
+<main>
+    <h1>CO2-Emissionen - Report</h1>
+    <table id="emissionsTable">
+        <thead>
+        <tr class="table-header">
+            <th>Country</th>
+            <th>Average Emission</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Poland</td>
+            <td th:text="${averageEmissionPL}">averageEmissionPL</td>
+        </tr>
+        <tr>
+            <td>Deutschland</td>
+            <td th:text="${averageEmissionDE}">averageEmissionDE</td>
+        </tr>
+        <tr>
+            <td>Estland</td>
+            <td th:text="${averageEmissionEE}">averageEmissionEE</td>
+        </tr>
+        </tbody>
+    </table>
+    <div id="about" class="news-container">
+        <h2>Bei uns</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis libero ac urna placerat, eget sodales purus finibus. Nulla sit amet leo ac risus sagittis tristique.</p>
+        <p>Phasellus ac ante fermentum, tempor sem a, vulputate libero. Duis faucibus lorem at sem scelerisque lobortis. Suspendisse potenti.</p>
+        <p>Vestibulum rutrum nisl vel turpis efficitur bibendum. Aenean euismod, risus vel laoreet blandit, odio libero convallis turpis, id congue dolor justo vel justo.</p>
+    </div>
+    <div class="news-container">
+        <h2>Neueste Nachrichten</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis libero ac urna placerat, eget sodales purus finibus. Nulla sit amet leo ac risus sagittis tristique.</p>
+        <p>Phasellus ac ante fermentum, tempor sem a, vulputate libero. Duis faucibus lorem at sem scelerisque lobortis. Suspendisse potenti.</p>
+        <p>Vestibulum rutrum nisl vel turpis efficitur bibendum. Aenean euismod, risus vel laoreet blandit, odio libero convallis turpis, id congue dolor justo vel justo.</p>
+    </div>
+
+    <div class="news-container">
+        <h2>Neueste Nachrichten</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis libero ac urna placerat, eget sodales purus finibus. Nulla sit amet leo ac risus sagittis tristique.</p>
+        <p>Phasellus ac ante fermentum, tempor sem a, vulputate libero. Duis faucibus lorem at sem scelerisque lobortis. Suspendisse potenti.</p>
+        <p>Vestibulum rutrum nisl vel turpis efficitur bibendum. Aenean euismod, risus vel laoreet blandit, odio libero convallis turpis, id congue dolor justo vel justo.</p>
+    </div>
+</main>
+<footer>
+    <p>© 2024 CO2 - Emission. Alle Rechte sind vorbehalten.</p>
+</footer>
+</body>
+</html>

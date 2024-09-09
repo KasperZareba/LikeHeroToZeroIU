@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Verwaltung</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h4 {
+            color: #00529B;
+        }
+        h4 {
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #cccccc;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .button {
+            padding: 10px 15px;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 5px;
+        }
+        .button.accept {
+            background-color: green;
+        }
+        .button.edit {
+            background-color: #00529B;
+        }
+        .button.delete {
+            background-color: red;
+        }
+        a {
+            display: inline-block;
+            padding: 10px 15px;
+            color: #ffffff;
+            background-color: #00529B;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        a:hover {
+            background-color: #003d73;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<h1>Hallo, Administrator!</h1>
+<a th:href="@{/admin/addEditor}" class="logout-button">Editor hinzufügen</a>
+
+<h4>Akzeptable Forschung</h4>
+
+<table>
+    <thead>
+    <tr>
+        <th>Ländercode</th>
+        <th>Durchschnittliche Emissionen</th>
+        <th>Datum</th>
+        <th>Aktionen</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="emission : ${emissions}">
+        <td th:text="${emission.countryCode}"></td>
+        <td th:text="${emission.averageEmissionValue}"></td>
+        <td th:text="${emission.localDate}"></td>
+        <td>
+            <form th:action="@{/admin/accept/{id}(id=${emission.id})}" method="post" style="display:inline;">
+                <button type="submit" class="button accept">Akzeptiere</button>
+            </form>
+            <a th:href="@{/admin/edit/{id}(id=${emission.id})}" class="button edit">Edit</a>
+            <form th:action="@{/admin/delete/{id}(id=${emission.id})}" method="post" style="display:inline;">
+                <button type="submit" class="button delete">löschen</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/home}" class="logout-button">Zurück</a>
+<a th:href="@{/logout}" class="logout-button">Ausloggen</a>
+</body>
+<footer>
+    <p>&copy; 2024 CO2 - Emission. Alle Rechte sind vorbehalten.</p>
+</footer>
+</html>
